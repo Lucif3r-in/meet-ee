@@ -1,9 +1,9 @@
 .Table {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  width: 75%;
+  width: auto;
 }
 .Card {
   display: flex;
@@ -28,8 +28,8 @@
 .Grid-Container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-  width: 75%;
+  grid-gap: 10px;
+  width: auto;
   margin-top: 1rem;
 }
 
@@ -37,11 +37,4 @@
   font-weight: bold;
   text-align: center;
   margin-top: 100px;
-}
-
-.Spinner-Wrapper {
-  display: flex;
-  justify-content: center;
-  height: 100vh;
-  align-items: center;
 }

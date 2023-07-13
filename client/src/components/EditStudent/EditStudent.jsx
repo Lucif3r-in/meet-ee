@@ -1,31 +1,31 @@
 import React, { Component } from "react";
-import './EditStudent.css';
+import "./EditStudent.css";
 import axios from "axios";
-import { withRouter } from 'react-router'
-import {toast, ToastContainer} from "react-toastify";
+import { withRouter } from "react-router";
+import { toast, ToastContainer } from "react-toastify";
 
 class EditStudent extends Component {
   state = {
-    id: '',
+    id: "",
     name: "",
     email: "",
-    enrollnumber: "",
-    response: ""
+    rollnumber: "",
+    response: "",
   };
 
-  onChangeHandler = e => this.setState({ [e.target.name]: e.target.value });
+  onChangeHandler = (e) => this.setState({ [e.target.name]: e.target.value });
 
   async componentDidMount() {
     try {
-    let search =  this.props.location.search,
-      id = search.substring(1, search.length);
-    const updateStudent = await axios(`/api/students/${id}`);
-    const { name, email, enrollnumber } = updateStudent.data.student;
-    this.setState({ id, name, email, enrollnumber  });
+      let search = this.props.location.search,
+        id = search.substring(1, search.length);
+      const updateStudent = await axios(`/api/students/${id}`);
+      const { name, email, rollnumber } = updateStudent.data.student;
+      this.setState({ id, name, email, rollnumber });
     } catch (err) {
-      this.setState({ response: "Student not found!" })
+      this.setState({ response: "Student not found!" });
     }
-  };
+  }
 
   updateStudentHandler = async (e) => {
     e.preventDefault();
@@ -33,18 +33,17 @@ class EditStudent extends Component {
       const student = await axios.put(`/api/students/${this.state.id}`, {
         name: this.refs.name.value,
         email: this.refs.email.value,
-        enrollnumber: this.refs.enrollnumber.value
+        rollnumber: this.refs.rollnumber.value,
       });
-      toast(student.data.message ,{ type: toast.TYPE.INFO, autoClose: 3000 });
-
+      toast(student.data.message, { type: toast.TYPE.INFO, autoClose: 3000 });
     } catch (err) {
-      toast(err.message ,{ type: toast.TYPE.ERROR, autoClose: 3000 });
+      toast(err.message, { type: toast.TYPE.ERROR, autoClose: 3000 });
     }
   };
 
   render() {
     if (this.state.response === "Student not found!")
-      return <h1>Student not found!</h1>
+      return <h1>Student not found!</h1>;
     return (
       <div className="Edit-Student-Wrapper">
         <h1>Edit page</h1>
@@ -53,7 +52,7 @@ class EditStudent extends Component {
           <input
             type="text"
             placeholder="Name..."
-            value={ this.state.name }
+            value={this.state.name}
             name="name"
             onChange={this.onChangeHandler}
             ref="name"
@@ -61,11 +60,13 @@ class EditStudent extends Component {
             className="Edit-Student-Input"
             id="name"
           />
-          <label htmlFor="email">Email: <b>(must be a valid email)</b></label>
+          <label htmlFor="email">
+            Email: <b>(must be a valid email)</b>
+          </label>
           <input
             type="email"
             placeholder="Enter your email here"
-            value={ this.state.email }
+            value={this.state.email}
             name="email"
             required
             onChange={this.onChangeHandler}
@@ -73,21 +74,24 @@ class EditStudent extends Component {
             className="Edit-Student-Input"
             id="email"
           />
-          <label htmlFor="enrollnumber">Enrollement Number: </label>
+          <label htmlFor="rollnumber">Enrollement Number: </label>
           <input
             type="number"
             placeholder="Enter the student's enrollment number"
-            value={ this.state.enrollnumber }
-            name="enrollnumber"
+            value={this.state.rollnumber}
+            name="rollnumber"
             min="1"
             max="120"
             required
             onChange={this.onChangeHandler}
-            ref="enrollnumber"
+            ref="rollnumber"
             className="Edit-Student-Input"
-            id="enrollnumber"
+            id="rollnumber"
           />
-          <button type="submit" className="Edit-Student-Submit fa fa-pencil"></button>
+          <button
+            type="submit"
+            className="Edit-Student-Submit fa fa-pencil"
+          ></button>
         </form>
         <ToastContainer />
       </div>

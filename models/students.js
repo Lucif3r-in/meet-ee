@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const studentSchema = new mongoose.Schema({
   name: {
@@ -6,21 +6,23 @@ const studentSchema = new mongoose.Schema({
     required: true,
     minlength: 3,
     maxlength: 33,
-    trim: true
+    trim: true,
   },
   email: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
   },
-  enrollnumber: {
-    type: Number,
-    min: 1,
-    max: 120
-  }
+  rollnumber: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return /^121EE\d{4}$/.test(value);
+      },
+      message: 'Roll number should be in the format "121EEXXXX".',
+    },
+    required: true,
+  },
 });
 
-module.exports = mongoose.model('students', studentSchema);
-
-
-
+module.exports = mongoose.model("students", studentSchema);
