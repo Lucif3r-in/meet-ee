@@ -1,0 +1,38 @@
+.Student-Box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 200px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.Student-Box-Content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Student-Box-Name {
+  font-weight: bold;
+}
+
+.Student-Box-Actions {
+  margin-top: 10px;
+}
+
+.Action-Button {
+  width: 45px;
+  height: 40px;
+  background-color: #3833a5;
+  color: #fff;
+  border: none;
+  margin: 5px;
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+}
