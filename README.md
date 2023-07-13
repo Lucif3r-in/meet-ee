@@ -23,8 +23,8 @@ npm start
 
 - Frontend
 ```shell
-cd client && npm start
+cd client && yarn start
 ```
 
 ## Contributions
-Contributions are welcome. Just submit a PR and I will make sure to review it 😸
+Contributions are welcome. Keep giving suggestions.
