@@ -28,9 +28,8 @@ cd client && yarn start
 ```
 
 ## Contributions
-<<<<<<< HEAD
 
 Contributions are welcome. Just submit a PR and I will make sure to review it 😸
 =======
 Contributions are welcome. Keep giving suggestions.
->>>>>>> 920c145732a94138b907846209bed63eb34be9c4
+
