@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./AddStudent.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
@@ -8,6 +8,8 @@ const AddStudent = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [rollnumber, setRollNumber] = useState("");
+  const [image, setImage] = useState(null); // New state for image file
+  const imageRef = useRef(null); // Ref for image input element
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -20,13 +22,23 @@ const AddStudent = () => {
     }
   };
 
+  const onChangeImage = (e) => {
+    setImage(e.target.files[0]); // Update the image file state
+  };
+
   const addStudent = async (e) => {
     e.preventDefault();
     try {
-      const newStudent = await axios.post("/api/students/", {
-        name,
-        email,
-        rollnumber,
+      const formData = new FormData(); // Create a new FormData instance
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("rollnumber", rollnumber);
+      formData.append("image", image); // Append the image file to the FormData
+
+      const newStudent = await axios.post("/api/students/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Set the content type header for file uploads
+        },
       });
 
       toast(
@@ -41,7 +53,7 @@ const AddStudent = () => {
   return (
     <div className="AddStudent-Wrapper">
       <h1>Add Student:</h1>
-      <form onSubmit={addStudent}>
+      <form onSubmit={addStudent} encType="multipart/form-data">
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -80,6 +92,18 @@ const AddStudent = () => {
           className="Add-Student-Input"
           required
           id="rollnumber"
+        />
+
+        <label htmlFor="image">Image:</label>
+        <input
+          type="file"
+          name="image"
+          accept="image/*"
+          ref={imageRef}
+          onChange={onChangeImage}
+          className="Add-Student-Input"
+          required
+          id="image"
         />
 
         <button

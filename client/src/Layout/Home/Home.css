@@ -32,7 +32,16 @@
   width: auto;
   margin-top: 1rem;
 }
-
+@media (max-width: 1008px) {
+  .Grid-Container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  .Grid-Container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 .No-Students {
   font-weight: bold;
   text-align: center;

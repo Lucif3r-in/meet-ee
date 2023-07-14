@@ -4,11 +4,19 @@
   align-items: center;
   justify-content: center;
   width: 250px;
-  height: 200px;
+  height: auto;
   border: 1px solid #ccc;
   border-radius: 10px;
   margin: 10px;
-  padding: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.Student-Box-Image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
 
 .Student-Box-Content {
@@ -19,10 +27,17 @@
 
 .Student-Box-Name {
   font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.Student-Box-Email,
+.Student-Box-Enroll {
+  color: #555;
+  margin-bottom: 5px;
 }
 
 .Student-Box-Actions {
-  margin-top: 10px;
+  margin-top: auto;
 }
 
 .Action-Button {

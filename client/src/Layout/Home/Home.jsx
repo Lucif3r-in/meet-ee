@@ -17,7 +17,7 @@ const Home = () => {
         const students = await axios("/api/students/");
         setData(students.data);
       } catch (err) {
-        setError(err.message);
+        setError("Error fetching students data.");
       }
     };
 
@@ -30,7 +30,7 @@ const Home = () => {
       const students = await axios("/api/students/");
       setData(students.data);
     } catch (err) {
-      setError(err.message);
+      setError("Error removing student.");
     }
   };
 
@@ -58,6 +58,8 @@ const Home = () => {
           removeStudent={removeStudent}
         />
       ));
+  } else if (error) {
+    return <h1>{error}</h1>;
   } else {
     return (
       <div className="Spinner-Wrapper">
@@ -66,7 +68,6 @@ const Home = () => {
     );
   }
 
-  if (error) return <h1>{error}</h1>;
   if (data !== null && !data.students.length)
     return <h1 className="No-Students">No students!</h1>;
 
