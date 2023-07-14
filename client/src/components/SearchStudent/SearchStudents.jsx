@@ -1,26 +1,25 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./SearchStudents.css";
 
-class SearchStudents extends Component {
-  state = { value: "" };
+const SearchStudents = ({ searchStudents }) => {
+  const [value, setValue] = useState("");
 
-  onChangeHandler = e => {
-    this.setState({ value: e.target.value }, () => {
-      this.props.searchStudents(this.state.value);
-    });
-  }
+  const onChangeHandler = (e) => {
+    const inputValue = e.target.value;
+    setValue(inputValue);
+    searchStudents(inputValue);
+  };
 
-  render() {
-    return (
-      <input
-        type="text"
-        placeholder="Filter by name..."
-        name="name"
-        onChange={ this.onChangeHandler }
-        className="Search-Student-Input"
-      />
-    );
-  }
-}
+  return (
+    <input
+      type="text"
+      placeholder="Filter by name..."
+      name="name"
+      value={value}
+      onChange={onChangeHandler}
+      className="Search-Student-Input"
+    />
+  );
+};
 
 export default SearchStudents;

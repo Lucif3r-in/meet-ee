@@ -1,39 +1,54 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./EditStudent.css";
 import axios from "axios";
 import { withRouter } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-class EditStudent extends Component {
-  state = {
-    id: "",
-    name: "",
-    email: "",
-    rollnumber: "",
-    response: "",
+const EditStudent = (props) => {
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [rollnumber, setRollNumber] = useState("");
+  const [response, setResponse] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const search = props.location.search;
+        const id = search.substring(1, search.length);
+        const updateStudent = await axios(`/api/students/${id}`);
+        const { name, email, rollnumber } = updateStudent.data.student;
+        setId(id);
+        setName(name);
+        setEmail(email);
+        setRollNumber(rollnumber);
+      } catch (err) {
+        setResponse("Student not found!");
+      }
+    };
+
+    fetchData();
+  }, [props.location.search]);
+
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    if (name === "name") {
+      setName(value);
+    } else if (name === "email") {
+      setEmail(value);
+    } else if (name === "rollnumber") {
+      setRollNumber(value);
+    }
   };
 
-  onChangeHandler = (e) => this.setState({ [e.target.name]: e.target.value });
-
-  async componentDidMount() {
-    try {
-      let search = this.props.location.search,
-        id = search.substring(1, search.length);
-      const updateStudent = await axios(`/api/students/${id}`);
-      const { name, email, rollnumber } = updateStudent.data.student;
-      this.setState({ id, name, email, rollnumber });
-    } catch (err) {
-      this.setState({ response: "Student not found!" });
-    }
-  }
-
-  updateStudentHandler = async (e) => {
+  const updateStudentHandler = async (e) => {
     e.preventDefault();
     try {
-      const student = await axios.put(`/api/students/${this.state.id}`, {
-        name: this.refs.name.value,
-        email: this.refs.email.value,
-        rollnumber: this.refs.rollnumber.value,
+      const student = await axios.put(`/api/students/${id}`, {
+        name,
+        email,
+        rollnumber,
       });
       toast(student.data.message, { type: toast.TYPE.INFO, autoClose: 3000 });
     } catch (err) {
@@ -41,62 +56,57 @@ class EditStudent extends Component {
     }
   };
 
-  render() {
-    if (this.state.response === "Student not found!")
-      return <h1>Student not found!</h1>;
-    return (
-      <div className="Edit-Student-Wrapper">
-        <h1>Edit page</h1>
-        <form onSubmit={this.updateStudentHandler}>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            placeholder="Name..."
-            value={this.state.name}
-            name="name"
-            onChange={this.onChangeHandler}
-            ref="name"
-            required
-            className="Edit-Student-Input"
-            id="name"
-          />
-          <label htmlFor="email">
-            Email: <b>(must be a valid email)</b>
-          </label>
-          <input
-            type="email"
-            placeholder="Enter your email here"
-            value={this.state.email}
-            name="email"
-            required
-            onChange={this.onChangeHandler}
-            ref="email"
-            className="Edit-Student-Input"
-            id="email"
-          />
-          <label htmlFor="rollnumber">Enrollement Number: </label>
-          <input
-            type="number"
-            placeholder="Enter the student's enrollment number"
-            value={this.state.rollnumber}
-            name="rollnumber"
-            min="1"
-            max="120"
-            required
-            onChange={this.onChangeHandler}
-            ref="rollnumber"
-            className="Edit-Student-Input"
-            id="rollnumber"
-          />
-          <button
-            type="submit"
-            className="Edit-Student-Submit fa fa-pencil"
-          ></button>
-        </form>
-        <ToastContainer />
-      </div>
-    );
+  if (response === "Student not found!") {
+    return <h1>Student not found!</h1>;
   }
-}
+
+  return (
+    <div className="Edit-Student-Wrapper">
+      <h1>Edit page</h1>
+      <form onSubmit={updateStudentHandler}>
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          placeholder="Name..."
+          value={name}
+          name="name"
+          onChange={onChangeHandler}
+          required
+          className="Edit-Student-Input"
+          id="name"
+        />
+        <label htmlFor="email">
+          Email: <b>(must be a valid email)</b>
+        </label>
+        <input
+          type="email"
+          placeholder="Enter your email here"
+          value={email}
+          name="email"
+          required
+          onChange={onChangeHandler}
+          className="Edit-Student-Input"
+          id="email"
+        />
+        <label htmlFor="rollnumber">Enrollment Number: </label>
+        <input
+          type="text"
+          placeholder="Enter the student's enrollment number"
+          value={rollnumber}
+          name="rollnumber"
+          required
+          onChange={onChangeHandler}
+          className="Edit-Student-Input"
+          id="rollnumber"
+        />
+        <button
+          type="submit"
+          className="Edit-Student-Submit fa fa-pencil"
+        ></button>
+      </form>
+      <ToastContainer />
+    </div>
+  );
+};
 
 export default withRouter(EditStudent);
