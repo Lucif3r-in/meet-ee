@@ -18,7 +18,7 @@ npm install
 - Backend
 
 ```shell
-npm start
+yarn server
 ```
 
 - Frontend
@@ -29,7 +29,6 @@ cd client && yarn start
 
 ## Contributions
 
-Contributions are welcome. Just submit a PR and I will make sure to review it 😸
-=======
+Contributions are welcome. Raise an issue or create a PR, I will be happy to review.
 Contributions are welcome. Keep giving suggestions.
 
