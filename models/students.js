@@ -27,6 +27,42 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  github: {
+    type: String,
+    required: false,
+    trim: true,
+  },
+  linkedin: {
+    type: String,
+    required: false,
+    trim: true,
+  },
+  twitter: {
+    type: String,
+    required: false,
+    trim: true,
+  },
+  instagram: {
+    type: String,
+    required: false,
+    trim: true,
+  },
+  about: {
+    type: String,
+    required: false,
+  },
+  areaOfInterest: {
+    type: String,
+    required: false,
+  },
+  internshipExperiences: {
+    type: String,
+    required: false,
+  },
+  achievements: {
+    type: String,
+    required: false,
+  },
 });
 
 module.exports = mongoose.model("students", studentSchema);

@@ -57,6 +57,14 @@ const Home = () => {
           {...student}
           removeStudent={removeStudent}
           profilePhoto={student.profilePhoto} // Pass the profilePhoto prop with the profile photo link
+          github={student.github} // Add the github prop
+          linkedin={student.linkedin} // Add the linkedin prop
+          twitter={student.twitter} // Add the twitter prop
+          instagram={student.instagram} // Add the instagram prop
+          about={student.about} // Add the about prop
+          areaOfInterest={student.areaOfInterest} // Add the areaOfInterest prop
+          internshipExperiences={student.internshipExperiences} // Add the internshipExperiences prop
+          achievements={student.achievements} // Add the achievements prop
         />
       ));
   } else {

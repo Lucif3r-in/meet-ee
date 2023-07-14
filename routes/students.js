@@ -33,11 +33,7 @@ router.get("/:id", async (req, res) => {
 // @access  Public
 router.post("/", async (req, res) => {
   try {
-    const newStudent = await Students.create({
-      name: req.body.name,
-      email: req.body.email,
-      rollnumber: req.body.rollnumber,
-    });
+    const newStudent = await Students.create(req.body);
     res.send({ newStudent });
   } catch (err) {
     res.status(400).send({ error: err });

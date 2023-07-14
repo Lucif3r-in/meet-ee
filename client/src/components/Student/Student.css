@@ -10,6 +10,7 @@
   margin: 10px;
   padding: 20px;
   text-align: center;
+  cursor: pointer;
 }
 
 .Student-Box-Image {
@@ -18,7 +19,10 @@
   border-radius: 50%;
   margin-bottom: 10px;
 }
-
+.Student-Box-Photo {
+  width: 100px;
+  height: 100px;
+}
 .Student-Box-Content {
   display: flex;
   flex-direction: column;
@@ -50,4 +54,103 @@
   border-radius: 2px;
   cursor: pointer;
   outline: none;
+}
+.Student-Modal-Backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 37, 41, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Student-Modal {
+  overflow-y: auto;
+  width: 800px;
+  height: 500px;
+  background-color: #212529;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.Student-Modal-Left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+}
+
+.Profile-Photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.Default-Profile-Photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ddd;
+  font-size: 48px;
+  color: #333;
+}
+
+.Modal-Name {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.Modal-Roll {
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.Student-Modal-Right {
+  width: 75%;
+}
+
+.Modal-Section {
+  margin-bottom: 20px;
+}
+
+.Modal-Section h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.Modal-Section p {
+  margin-top: 5px;
+}
+
+.Modal-Section ul {
+  margin-top: 5px;
+  padding-left: 20px;
+}
+
+.Modal-Section li {
+  margin-bottom: 5px;
+}
+
+.Modal-Close {
+  margin-top: 20px;
+  align-self: flex-end;
+  padding: 8px 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }

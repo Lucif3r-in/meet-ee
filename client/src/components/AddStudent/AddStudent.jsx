@@ -8,6 +8,14 @@ const AddStudent = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [rollnumber, setRollNumber] = useState("");
+  const [github, setGithub] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [about, setAbout] = useState("");
+  const [areaOfInterest, setAreaOfInterest] = useState("");
+  const [internshipExperiences, setInternshipExperiences] = useState("");
+  const [achievements, setAchievements] = useState("");
   const [profilePhotoLink, setProfilePhotoLink] = useState(""); // New state for profile photo link
 
   const onChangeHandler = (e) => {
@@ -18,6 +26,22 @@ const AddStudent = () => {
       setEmail(value);
     } else if (name === "rollnumber") {
       setRollNumber(value);
+    } else if (name === "github") {
+      setGithub(value);
+    } else if (name === "linkedin") {
+      setLinkedin(value);
+    } else if (name === "twitter") {
+      setTwitter(value);
+    } else if (name === "instagram") {
+      setInstagram(value);
+    } else if (name === "about") {
+      setAbout(value);
+    } else if (name === "areaOfInterest") {
+      setAreaOfInterest(value);
+    } else if (name === "internshipExperience") {
+      setInternshipExperiences(value);
+    } else if (name === "achievement") {
+      setAchievements(value);
     } else if (name === "profilePhotoLink") {
       setProfilePhotoLink(value);
     }
@@ -30,6 +54,14 @@ const AddStudent = () => {
         name,
         email,
         rollnumber,
+        github,
+        linkedin,
+        twitter,
+        instagram,
+        about,
+        areaOfInterest,
+        internshipExperiences,
+        achievements,
         profilePhoto: profilePhotoLink,
       });
 
@@ -60,15 +92,14 @@ const AddStudent = () => {
           id="name"
         />
         <label htmlFor="email">
-          email: <b>(must be a valid email)</b>
+          Email: <b>(must be a valid email)</b>
         </label>
         <input
-          type="text"
-          placeholder="enter your email here"
+          type="email"
+          placeholder="Enter your email here"
           name="email"
           onChange={onChangeHandler}
           value={email}
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           className="Add-Student-Input"
           required
           id="email"
@@ -85,6 +116,88 @@ const AddStudent = () => {
           required
           id="rollnumber"
         />
+        <label htmlFor="github">Github: </label>
+        <input
+          type="text"
+          placeholder="Enter your Github link"
+          name="github"
+          onChange={onChangeHandler}
+          value={github}
+          className="Add-Student-Input"
+          id="github"
+        />
+        <label htmlFor="linkedin">Linkedin: </label>
+        <input
+          type="text"
+          placeholder="Enter your Linkedin link"
+          name="linkedin"
+          onChange={onChangeHandler}
+          value={linkedin}
+          className="Add-Student-Input"
+          id="linkedin"
+        />
+        <label htmlFor="twitter">Twitter: </label>
+        <input
+          type="text"
+          placeholder="Enter your Twitter link"
+          name="twitter"
+          onChange={onChangeHandler}
+          value={twitter}
+          className="Add-Student-Input"
+          id="twitter"
+        />
+        <label htmlFor="instagram">Instagram: </label>
+        <input
+          type="text"
+          placeholder="Enter your Instagram link"
+          name="instagram"
+          onChange={onChangeHandler}
+          value={instagram}
+          className="Add-Student-Input"
+          id="instagram"
+        />
+        <label htmlFor="about">About: </label>
+        <textarea
+          placeholder="Enter a short description about yourself"
+          name="about"
+          onChange={onChangeHandler}
+          value={about}
+          className="Add-Student-Input"
+          id="about"
+          required
+          minLength="10"
+          maxLength="500"
+        ></textarea>
+        <label htmlFor="areaOfInterest">Area of Interest: </label>
+        <textarea
+          placeholder="Enter your area of interest"
+          name="areaOfInterest"
+          onChange={onChangeHandler}
+          value={areaOfInterest}
+          className="Add-Student-Input"
+          id="areaOfInterest"
+          required
+          minLength="10"
+          maxLength="500"
+        ></textarea>
+        <label htmlFor="internshipExperience">Internship Experiences:</label>
+        <textarea
+          placeholder="Enter your internship experiences"
+          name="internshipExperience"
+          onChange={onChangeHandler}
+          value={internshipExperiences}
+          className="Add-Student-Input"
+          id="internshipExperience"
+        ></textarea>
+        <label htmlFor="achievement">Achievements:</label>
+        <textarea
+          placeholder="Enter your achievements"
+          name="achievement"
+          onChange={onChangeHandler}
+          value={achievements}
+          className="Add-Student-Input"
+          id="achievement"
+        ></textarea>
         {/* <label htmlFor="profilePhotoLink">Profile Photo Link: </label>
         <input
           type="text"
