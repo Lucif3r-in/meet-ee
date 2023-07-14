@@ -1,30 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
-const path = require("path");
-
-// Multer configuration for image upload
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/"); // Destination folder for storing uploaded images
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + ext); // Unique filename for each uploaded image
-  },
-});
-const upload = multer({ storage });
 
 // Student model
-const Student = require("../models/students");
+const Students = require("../models/students");
 
 // @route   GET /api/students/
 // @desc    Get all students
 // @access  Public
 router.get("/", async (req, res) => {
   try {
-    const students = await Student.find({});
+    const students = await Students.find({});
     res.send({ students });
   } catch (err) {
     res.status(400).send({ error: err });
@@ -36,7 +21,7 @@ router.get("/", async (req, res) => {
 // @access  Public
 router.get("/:id", async (req, res) => {
   try {
-    const student = await Student.findById(req.params.id);
+    const student = await Students.findById(req.params.id);
     res.send({ student });
   } catch (err) {
     res.status(404).send({ message: "Student not found!" });
@@ -46,20 +31,13 @@ router.get("/:id", async (req, res) => {
 // @route   POST /api/students/
 // @desc    Create a student
 // @access  Public
-router.post("/", upload.single("image"), async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const { name, email, rollnumber } = req.body;
-    const imagePath = req.file.path; // File path of the uploaded image
-
-    const newStudent = new Student({
-      name,
-      email,
-      rollnumber,
-      image: imagePath, // Store the image path in the image field of the student model
+    const newStudent = await Students.create({
+      name: req.body.name,
+      email: req.body.email,
+      rollnumber: req.body.rollnumber,
     });
-
-    await newStudent.save();
-
     res.send({ newStudent });
   } catch (err) {
     res.status(400).send({ error: err });
@@ -71,7 +49,7 @@ router.post("/", upload.single("image"), async (req, res) => {
 // @access  Public
 router.put("/:id", async (req, res) => {
   try {
-    const updatedStudent = await Student.findByIdAndUpdate(
+    const updatedStudent = await Students.findByIdAndUpdate(
       req.params.id,
       req.body
     );
@@ -86,7 +64,7 @@ router.put("/:id", async (req, res) => {
 // @access  Public
 router.delete("/:id", async (req, res) => {
   try {
-    const removeStudent = await Student.findByIdAndRemove(req.params.id);
+    const removeStudent = await Students.findByIdAndRemove(req.params.id);
     res.send({ message: "The student was removed" });
   } catch (err) {
     res.status(400).send({ error: err });

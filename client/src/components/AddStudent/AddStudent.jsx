@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "./AddStudent.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
@@ -8,8 +8,7 @@ const AddStudent = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [rollnumber, setRollNumber] = useState("");
-  const [image, setImage] = useState(null); // New state for image file
-  const imageRef = useRef(null); // Ref for image input element
+  const [profilePhotoLink, setProfilePhotoLink] = useState(""); // New state for profile photo link
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -19,26 +18,19 @@ const AddStudent = () => {
       setEmail(value);
     } else if (name === "rollnumber") {
       setRollNumber(value);
+    } else if (name === "profilePhotoLink") {
+      setProfilePhotoLink(value);
     }
-  };
-
-  const onChangeImage = (e) => {
-    setImage(e.target.files[0]); // Update the image file state
   };
 
   const addStudent = async (e) => {
     e.preventDefault();
     try {
-      const formData = new FormData(); // Create a new FormData instance
-      formData.append("name", name);
-      formData.append("email", email);
-      formData.append("rollnumber", rollnumber);
-      formData.append("image", image); // Append the image file to the FormData
-
-      const newStudent = await axios.post("/api/students/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data", // Set the content type header for file uploads
-        },
+      const newStudent = await axios.post("/api/students/", {
+        name,
+        email,
+        rollnumber,
+        profilePhoto: profilePhotoLink,
       });
 
       toast(
@@ -53,7 +45,7 @@ const AddStudent = () => {
   return (
     <div className="AddStudent-Wrapper">
       <h1>Add Student:</h1>
-      <form onSubmit={addStudent} encType="multipart/form-data">
+      <form onSubmit={addStudent}>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -93,18 +85,20 @@ const AddStudent = () => {
           required
           id="rollnumber"
         />
-
-        <label htmlFor="image">Image:</label>
+        {/* <label htmlFor="profilePhotoLink">Profile Photo Link: </label>
         <input
-          type="file"
-          name="image"
-          accept="image/*"
-          ref={imageRef}
-          onChange={onChangeImage}
+          type="text"
+          placeholder="Enter the link to the profile photo"
+          name="profilePhotoLink"
+          onChange={onChangeHandler}
+          value={profilePhotoLink}
           className="Add-Student-Input"
           required
-          id="image"
+          id="profilePhotoLink"
         />
+        {profilePhotoLink && (
+          <img src={profilePhotoLink} alt="Profile" className="Profile-Photo" />
+        )} */}
 
         <button
           type="submit"

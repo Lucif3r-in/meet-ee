@@ -3,7 +3,7 @@ import "./Home.css";
 import axios from "axios";
 import { PropagateLoader } from "react-spinners";
 // Components
-import StudentBox from "../../components/Student/Student";
+import Student from "../../components/Student/Student";
 import SearchStudents from "../../components/SearchStudent/SearchStudents";
 
 const Home = () => {
@@ -17,7 +17,7 @@ const Home = () => {
         const students = await axios("/api/students/");
         setData(students.data);
       } catch (err) {
-        setError("Error fetching students data.");
+        setError(err.message);
       }
     };
 
@@ -30,7 +30,7 @@ const Home = () => {
       const students = await axios("/api/students/");
       setData(students.data);
     } catch (err) {
-      setError("Error removing student.");
+      setError(err.message);
     }
   };
 
@@ -52,14 +52,13 @@ const Home = () => {
     students =
       data.students &&
       data.students.map((student) => (
-        <StudentBox
+        <Student
           key={student._id}
           {...student}
           removeStudent={removeStudent}
+          profilePhoto={student.profilePhoto} // Pass the profilePhoto prop with the profile photo link
         />
       ));
-  } else if (error) {
-    return <h1>{error}</h1>;
   } else {
     return (
       <div className="Spinner-Wrapper">
@@ -68,6 +67,7 @@ const Home = () => {
     );
   }
 
+  if (error) return <h1>{error}</h1>;
   if (data !== null && !data.students.length)
     return <h1 className="No-Students">No students!</h1>;
 
