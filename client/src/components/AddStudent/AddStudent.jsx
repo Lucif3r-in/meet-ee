@@ -75,155 +75,175 @@ const AddStudent = () => {
   };
 
   return (
-    <div className="AddStudent-Wrapper">
-      <h1>Add Student:</h1>
-      <form onSubmit={addStudent}>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          placeholder="Enter the name of the students here"
-          name="name"
-          onChange={onChangeHandler}
-          value={name}
-          className="Add-Student-Input"
-          required
-          minLength="3"
-          maxLength="33"
-          id="name"
-        />
-        <label htmlFor="email">
-          Email: <b>(must be a valid email)</b>
-        </label>
-        <input
-          type="email"
-          placeholder="Enter your email here"
-          name="email"
-          onChange={onChangeHandler}
-          value={email}
-          className="Add-Student-Input"
-          required
-          id="email"
-        />
-        <label htmlFor="rollnumber">Enrollment Number: </label>
-        <input
-          type="text"
-          placeholder="121EEXXXX"
-          name="rollnumber"
-          pattern="^121EE\d{4}$"
-          onChange={onChangeHandler}
-          value={rollnumber}
-          className="Add-Student-Input"
-          required
-          id="rollnumber"
-        />
-        <label htmlFor="github">Github: </label>
-        <input
-          type="text"
-          placeholder="Enter your Github link"
-          name="github"
-          onChange={onChangeHandler}
-          value={github}
-          className="Add-Student-Input"
-          id="github"
-        />
-        <label htmlFor="linkedin">Linkedin: </label>
-        <input
-          type="text"
-          placeholder="Enter your Linkedin link"
-          name="linkedin"
-          onChange={onChangeHandler}
-          value={linkedin}
-          className="Add-Student-Input"
-          id="linkedin"
-        />
-        <label htmlFor="twitter">Twitter: </label>
-        <input
-          type="text"
-          placeholder="Enter your Twitter link"
-          name="twitter"
-          onChange={onChangeHandler}
-          value={twitter}
-          className="Add-Student-Input"
-          id="twitter"
-        />
-        <label htmlFor="instagram">Instagram: </label>
-        <input
-          type="text"
-          placeholder="Enter your Instagram link"
-          name="instagram"
-          onChange={onChangeHandler}
-          value={instagram}
-          className="Add-Student-Input"
-          id="instagram"
-        />
-        <label htmlFor="about">About: </label>
-        <textarea
-          placeholder="Enter a short description about yourself"
-          name="about"
-          onChange={onChangeHandler}
-          value={about}
-          className="Add-Student-Input"
-          id="about"
-          required
-          minLength="10"
-          maxLength="500"
-        ></textarea>
-        <label htmlFor="areaOfInterest">Area of Interest: </label>
-        <textarea
-          placeholder="Enter your area of interest"
-          name="areaOfInterest"
-          onChange={onChangeHandler}
-          value={areaOfInterest}
-          className="Add-Student-Input"
-          id="areaOfInterest"
-          required
-          minLength="10"
-          maxLength="500"
-        ></textarea>
-        <label htmlFor="internshipExperience">Internship Experiences:</label>
-        <textarea
-          placeholder="Enter your internship experiences"
-          name="internshipExperience"
-          onChange={onChangeHandler}
-          value={internshipExperiences}
-          className="Add-Student-Input"
-          id="internshipExperience"
-        ></textarea>
-        <label htmlFor="achievement">Achievements:</label>
-        <textarea
-          placeholder="Enter your achievements"
-          name="achievement"
-          onChange={onChangeHandler}
-          value={achievements}
-          className="Add-Student-Input"
-          id="achievement"
-        ></textarea>
-        {/* <label htmlFor="profilePhotoLink">Profile Photo Link: </label>
-        <input
-          type="text"
-          placeholder="Enter the link to the profile photo"
-          name="profilePhotoLink"
-          onChange={onChangeHandler}
-          value={profilePhotoLink}
-          className="Add-Student-Input"
-          required
-          id="profilePhotoLink"
-        />
-        {profilePhotoLink && (
-          <img src={profilePhotoLink} alt="Profile" className="Profile-Photo" />
-        )} */}
+    <>
+      <h1 style={{ textAlign: 'center',textShadow: '2px 2px 5px red' }}>Add Student:</h1>
 
-        <button
-          type="submit"
-          className="Add-Student-Submit fa fa-plus"
-        ></button>
-        <button
-          type="reset"
-          className="Add-Student-Reset fa fa-refresh"
-        ></button>
-      </form>
+
+      <div className="AddStudent-Wrapper">
+
+        <form onSubmit={addStudent} className="form-item">
+
+
+          <div className="formTop">
+            <div className="form-right">
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                placeholder="Enter the name of the students here"
+                name="name"
+                onChange={onChangeHandler}
+                value={name}
+                className="Add-Student-Input"
+                required
+                minLength="3"
+                maxLength="33"
+                id="name"
+              />
+              <label htmlFor="email">
+                Email: <b>(must be a valid email)</b>
+              </label>
+              <input
+                type="email"
+                placeholder="Enter your email here"
+                name="email"
+                onChange={onChangeHandler}
+                value={email}
+                className="Add-Student-Input"
+                required
+                id="email"
+              />
+              <label htmlFor="rollnumber">Enrollment Number: </label>
+              <input
+                type="text"
+                placeholder="121EEXXXX"
+                name="rollnumber"
+                pattern="^121EE\d{4}$"
+                onChange={onChangeHandler}
+                value={rollnumber}
+                className="Add-Student-Input"
+                required
+                id="rollnumber"
+              />
+            </div>
+
+
+
+
+            <div className="form-left">
+              <label htmlFor="github">Github: </label>
+              <input
+                type="text"
+                placeholder="Enter your Github link"
+                name="github"
+                onChange={onChangeHandler}
+                value={github}
+                className="Add-Student-Input"
+                id="github"
+              />
+              <label htmlFor="linkedin">Linkedin: </label>
+              <input
+                type="text"
+                placeholder="Enter your Linkedin link"
+                name="linkedin"
+                onChange={onChangeHandler}
+                value={linkedin}
+                className="Add-Student-Input"
+                id="linkedin"
+              />
+              <label htmlFor="twitter">Twitter: </label>
+              <input
+                type="text"
+                placeholder="Enter your Twitter link"
+                name="twitter"
+                onChange={onChangeHandler}
+                value={twitter}
+                className="Add-Student-Input"
+                id="twitter"
+              />
+              <label htmlFor="instagram">Instagram: </label>
+              <input
+                type="text"
+                placeholder="Enter your Instagram link"
+                name="instagram"
+                onChange={onChangeHandler}
+                value={instagram}
+                className="Add-Student-Input"
+                id="instagram"
+              />
+            </div>
+
+          </div>
+
+
+
+
+          <div className="form-bottom">
+            <label htmlFor="about">About: </label>
+            <textarea
+              placeholder="Enter a short description about yourself"
+              name="about"
+              onChange={onChangeHandler}
+              value={about}
+              className="Add-Student-Input"
+              id="about"
+              required
+              minLength="10"
+              maxLength="500"
+            ></textarea>
+            <label htmlFor="areaOfInterest">Area of Interest: </label>
+            <textarea
+              placeholder="Enter your area of interest"
+              name="areaOfInterest"
+              onChange={onChangeHandler}
+              value={areaOfInterest}
+              className="Add-Student-Input"
+              id="areaOfInterest"
+              required
+              minLength="10"
+              maxLength="500"
+            ></textarea>
+            <label htmlFor="internshipExperience">Internship Experiences:</label>
+            <textarea
+              placeholder="Enter your internship experiences"
+              name="internshipExperience"
+              onChange={onChangeHandler}
+              value={internshipExperiences}
+              className="Add-Student-Input"
+              id="internshipExperience"
+            ></textarea>
+            <label htmlFor="achievement">Achievements:</label>
+            <textarea
+              placeholder="Enter your achievements"
+              name="achievement"
+              onChange={onChangeHandler}
+              value={achievements}
+              className="Add-Student-Input"
+              id="achievement"
+            ></textarea>
+          
+
+            <div className="btn">
+              <button
+                type="submit" title="ADD"
+                className="Add-Student-Submit fa fa-plus"
+              ></button>
+              <button
+                type="reset" title="RELOAD"
+                className="Add-Student-Reset fa fa-refresh"
+              ></button>
+            </div>
+
+          </div>
+
+
+
+
+
+        </form>
+      </div>
       <ToastContainer />
-    </div>
+    </>
+
   );
 };
 

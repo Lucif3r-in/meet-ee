@@ -1,42 +1,111 @@
-.AddStudent-Wrapper {
+.AddStudent-Wrapper{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+   
+  margin-bottom: 20px;
+  
+}
+.AddStudent-Wrapper form  input{
+  
+  background-color: rgba(147, 118, 118, 0.564);
+  border-radius: 5px;
+  
+
+  color: black;
+  caret-color: red;
+
+}
+
+.AddStudent-Wrapper form  input :focus{
+  
+  caret-color: cyan;
+}
+
+.form-item{
+  display: flex;
   flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  
 }
 
-.Add-Student-Input {
-  padding: 4px 11px;
-  width: 55vw;
-  height: 32px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: rgba(0,0,0,.65);
-  background-color: #fff;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
+.formTop{
+  display: flex;
+  justify-content: space-evenly;
+  
+  width: 80vw;
+  height: 60vh;
+}
+.formTop label{
+  margin-left: 1rem;
+}
+.formTop input{
+  border: 2px solid rgba(77, 3, 3, 0.247);
+  
+  
+}
+.form-right{
+
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.form-right input{
+ 
+  width: 13rem;
+}
+.form-left{
+
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.form-bottom{
+ 
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  gap: 10px;
+  
+  border-radius: 10px;
+  padding: 2px;
+ 
+}
+
+.form-bottom label{
+  margin-left: 2px;
+}
+
+.form-bottom textarea{
+
   outline: none;
+  padding: 8px;
+  background-color: rgba(147, 118, 118, 0.564);
+  border-radius: 5px;
+  caret-color: red;
+  border: 2px solid rgba(77, 3, 3, 0.247);
+
+
+}
+.form-bottom textarea ::placeholder{
+   padding: 10px;
 }
 
-.Add-Student-Submit, .Add-Student-Reset {
-  width: 45px;
-  height: 40px;
-  color: #fff;
-  border: none;
-  margin-left: 18px;
-  border-radius: 2px;
+
+
+
+.btn{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  
+  
+}
+.btn button{
   cursor: pointer;
-  outline: none;
-}
-
-.Add-Student-Submit {
-  background-color: #6200ea;
-}
-
-.Add-Student-Reset {
-  background-color: red
-}
-
-label {
-  padding-left: 2%;
 }
